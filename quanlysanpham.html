@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    button {
+        width: 70px;
+        height: 50px;
+        background-color: lime;
+        border-radius: 5px;
+        color: white;
+    }
+
+    .mot {
+        width: 500px;
+    }
+
+    .hai {
+        width: 200px;
+    }
+
+    .ba {
+        width: 200px;
+    }
+</style>
+
+<body>
+    <h1>Add New Product</h1>
+    <div style="width: 450px; height: 100px; background-color: grey;">
+        <input type="text" placeholder="New Product" size="40" id="inputproduct"
+            style="margin-left: 20px; margin-top: 40px; height: 42px;">
+
+        <button style=" margin-left: 5px; margin-top: 40px;" onclick="themsanpham()">Add</button>
+    </div>
+    <h1 id="allproduct" hidden>Display All Product</h1>
+    <div id="hienthi"></div>
+    <script>
+        var arrproduct = []
+        var check = 0;
+        function themsanpham() {
+            let inputproduct = document.getElementById('inputproduct')
+            arrproduct.push(inputproduct.value)
+            inputproduct.value=""
+            hienthiproduct()
+        }
+        function hienthiproduct() {
+            document.getElementById('allproduct').hidden = false
+
+            let inputproduct = document.getElementById('inputproduct')
+            var hienthi = document.getElementById("hienthi")
+            var sOut = "<table>";
+            for (let i = 0; i < arrproduct.length; i++) {
+                sOut += "<tr id='hang'>";
+                sOut += "<td class='mot'>" + arrproduct[i] + "</td>";
+                sOut += "<td class='hai'> <button onclick ='sua("+i+")'> Edit </button>  </td> ";
+                sOut += "<td class='ba'> <button onclick ='xoa("+i+")'> Delete </button>  </td>";
+                sOut += "</tr>";
+            }
+            sOut += "</table>";
+            hienthi.innerHTML = sOut
+        }
+        function xoa(a) {
+            for (let i = 0; i < arrproduct.length; i++) {
+                if (i == a) {
+                    arrproduct.splice(i, 1);
+                }
+            }
+            console.log(arrproduct)
+            hienthiproduct()
+        }
+        function sua(a) {
+            let suaproduct=prompt("Nhập tên sản phẩm: ")
+            for (let i = 0; i < arrproduct.length; i++) {
+                if (i == a) {
+                    arrproduct[i]=suaproduct
+                }
+            }
+            hienthiproduct()
+        }
+    </script>
+</body>
+</html>
