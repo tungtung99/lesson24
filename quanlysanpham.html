@@ -62,6 +62,9 @@
             }
             sOut += "</table>";
             hienthi.innerHTML = sOut
+            if(arrproduct.length==0){
+                document.getElementById('allproduct').hidden
+            }
         }
         function xoa(a) {
             for (let i = 0; i < arrproduct.length; i++) {
